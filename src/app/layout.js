@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SideNavbar from "@/components/SideNavbar";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,13 +12,17 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
     return (
-        <html lang="en">
-            <body
-                className={`min-h-screen w-full bg-white text-black flex ${inter.className}`}
-            >
-                {" "}
-                <SideNavbar />
-                <div className="p-8 w-full">{children}</div>
+        <html lang="en" suppressHydrationWarning>
+            <body className={`min-h-screen w-full flex ${inter.className}`}>
+                <ThemeProvider
+                    attribute="class"
+                    defaultTheme="system"
+                    enableSystem
+                    disableTransitionOnChange
+                >
+                    <SideNavbar />
+                    <div className="p-8 w-full">{children}</div>
+                </ThemeProvider>
             </body>
         </html>
     );

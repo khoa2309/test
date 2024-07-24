@@ -1,5 +1,6 @@
 "use client";
 
+import { useTheme } from "next-themes";
 import {
     Bar,
     BarChart as BarGraph,
@@ -59,12 +60,15 @@ const data = [
     },
 ];
 
-function BarChar() {
+function BarChar({ width = "100%", height = 350 }) {
+    const { theme, systemTheme } = useTheme();
+    const currentTheme = theme === "system" ? systemTheme : theme;
+    const barColor = currentTheme === "dark" ? "white" : "black";
     return (
-        <ResponsiveContainer width={"100%"} height={350}>
+        <ResponsiveContainer width={width} height={height}>
             <BarGraph data={data}>
                 <XAxis
-                    dataKey={"name"}
+                    dataKey="name"
                     tickLine={false}
                     axisLine={false}
                     stroke="#888888"
@@ -77,7 +81,7 @@ function BarChar() {
                     fontSize={12}
                     tickFormatter={(value) => `$${value}`}
                 />
-                <Bar dataKey={"total"} radius={[4, 4, 0, 0]} />
+                <Bar dataKey="total" radius={[4, 4, 0, 0]} fill={barColor} />
             </BarGraph>
         </ResponsiveContainer>
     );

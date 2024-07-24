@@ -24,6 +24,12 @@ export function DataTable({ columns, data }) {
         columns,
         getCoreRowModel: getCoreRowModel(),
         getPaginationRowModel: getPaginationRowModel(),
+        initialState: {
+            pagination: {
+                pageIndex: 0,
+                pageSize: 5,
+            },
+        },
     });
 
     return (

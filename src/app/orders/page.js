@@ -16,12 +16,16 @@ const columns = [
         cell: ({ row }) => {
             return (
                 <div
-                    className={cn("font-medium w-fit px-4 py-2 rounded-lg", {
-                        "bg-red-200": row.getValue("status") === "Pending",
-                        "bg-orange-200":
-                            row.getValue("status") === "Processing",
-                        "bg-green-200": row.getValue("status") === "Completed",
-                    })}
+                    className={cn(
+                        "font-medium w-fit px-4 py-2 rounded-lg dark:text-black",
+                        {
+                            "bg-red-200": row.getValue("status") === "Pending",
+                            "bg-orange-200":
+                                row.getValue("status") === "Processing",
+                            "bg-green-200":
+                                row.getValue("status") === "Completed",
+                        }
+                    )}
                 >
                     <p>{row.getValue("status")} </p>
                 </div>
